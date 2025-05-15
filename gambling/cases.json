@@ -1,0 +1,89 @@
+{
+  "cases": {
+    "resources": {
+      "name": "Resources Case",
+      "price": 12,
+      "items": [
+        "coal", "flint", "iron", "slime", "redstone", "lapis", "glowstone", "gold", "diamond", "emerald", "nether-star"
+      ]
+    },
+    "food": {
+      "name": "Food Case",
+      "price": 30,
+      "items": [
+        "rotten-flesh", "bread", "watermelon", "carrot", "apple", "potato", "chicken", "beef", "porkchop", "mutton",
+        "mushrooms", "pumpkin-pie", "cookie", "cake", "poisonous-potato", "golden-carrot", "glistering-melon", "golden-apple"
+      ]
+    },
+        "shooting": {
+      "name": "Shooting Case",
+      "price": 40,
+      "items": [
+        "arrow", "wooden-bow", "wooden-crossbow", "trident", "golden-arrow", "diamond-arrow", "golden-trident",
+        "emerald-bow", "emerald-crossbow", "emerald-trident"
+      ]
+    },
+    "swords": {
+      "name": "Swords Case",
+      "price": 35,
+      "items": [
+        "wooden-sword", "stone-sword", "iron-sword", "redstone-sword", "lapis-sword", "golden-mini-sword", "golden-sword",
+        "ender-sword", "diamond-mini-sword", "diamond-sword", "emerald-mini-sword", "emerald-sword"
+      ]
+    },
+    "axe": {
+      "name": "Axe Case",
+      "price": 35,
+      "items": [
+        "wooden-axe", "stone-axe", "iron-axe", "golden-axe", "diamond-axe", "emerald-axe", "golden-mini-axe", "emerald-mini-axe", "redston-axe", "ender-axe", "diamond-mini-axe", "lapis-axe"
+      ]
+    },
+    "pickaxe": {
+      "name": "Pickaxe Case",
+      "price": 35,
+      "items": [
+        "wooden-pickaxe", "stone-pickaxe", "iron-pickaxe", "golden-pickaxe", "diamond-pickaxe", "emerald-pickaxe", "golden-mini-pickaxe", "emerald-mini-pickaxe", "redstone-pickaxe", "ender-pickaxe", "diamond-mini-pickaxe", "lapis-pickaxe"
+      ]
+    },
+    "potion": {
+      "name": "Potion Case",
+      "price": 180,
+      "items": [
+        "potion-healing", "potion-swiftness", "potion-strength", "potion-regeneration", "potion-night-vision",
+        "potion-water-breathing", "potion-invisibility", "potion-leaping", "potion-slow-falling", "potion-fire-resistance"
+      ]
+    },
+    "music": {
+      "name": "Music Case",
+      "price": 60,
+      "items": [
+        "disc-1", "disc-2", "disc-3", "disc-4", "disc-5", "disc-6", "disc-7", "disc-8", "disc-9", "disc-10", "disc-11", "disc-12", "disc-13"
+      ]
+    },
+    "armor": {
+      "name": "Armor Case",
+      "price": 110,
+      "items": [
+        "leather-boots", "leather-helmet", "leather-leggings", "leather-chestplate",
+        "iron-boots", "iron-helmet", "iron-leggings", "iron-chestplate",
+        "golden-boots", "golden-helmet", "golden-leggings", "golden-chestplate",
+        "chainmail-boots", "chainmail-helmet", "chainmail-leggings", "chainmail-chestplate",
+        "diamond-boots", "diamond-helmet", "diamond-leggings", "diamond-chestplate",
+        "turtle-shell", "emerald-boots", "emerald-helmet", "emerald-leggings", "emerald-chestplate", "elytra"
+      ]
+    },
+    "blocks": {
+      "name": "Blocks Case",
+      "price": 150,
+      "items": [
+        "workbench", "chest", "furnace", "iron-block", "bookshelf", "pumpkin", "redstone-block", "gold-block",
+        "obsidian", "tnt", "sponge", "diamond-block", "slime-block", "ender-chest", "emerald-block", "beacon"
+      ]
+    },
+    "super": {
+      "name": "Super Case",
+      "price": 1000,
+      "items": "ALL"
+    }
+  }
+}

@@ -1,227 +1,25 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Minecraft Case Opener</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #0a0f2c, #1a1f4a);
-      color: white;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #0d153a;
-      padding: 1rem 2rem;
-      font-weight: bold;
-    }
-
-    header .money {
-      font-size: 1.2rem;
-      background: #142b50;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav span {
-      cursor: pointer;
-      color: #00ffe4;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    .cases,
-    .inventory {
-      display: none;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .case {
-      width: 150px;
-      padding: 1rem;
-      background: #1d2a53;
-      border-radius: 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .case:hover {
-      transform: scale(1.05);
-      background-color: #2a3d6e;
-    }
-
-    .case img {
-      width: 100px;
-      height: 100px;
-    }
-
-    .case span {
-      display: block;
-      margin-top: 0.5rem;
-    }
-
-    .scrolling-animation {
-      display: none;
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 180px;
-      margin-top: 2rem;
-    }
-
-    .scrolling-track {
-      display: flex;
-      animation: scroll 4s ease-in-out forwards;
-    }
-
-    .scrolling-track img {
-      width: 120px;
-      height: 120px;
-      margin: 0 10px;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-80%); }
-    }
-
-    .inventory-item {
-      background-color: #26345c;
-      padding: 1rem;
-      border-radius: 10px;
-      margin: 1rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .inventory-item img {
-      height: 60px;
-      width: 60px;
-    }
-
-    .sell-btn {
-      background: #ff4e4e;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Minecraft Case Simulator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <nav>
-      <span onclick="showTab('cases')">CASES</span>
-      <span onclick="showTab('inventory')">INVENTORY</span>
-    </nav>
-    <div class="money" id="moneyDisplay">$0</div>
+    <h1>Minecraft Case Simulator</h1>
+    <div id="menu">
+      <button id="casesBtn">Cases</button>
+      <button id="inventoryBtn">Inventory</button>
+    </div>
+    <div id="coins">💰 Coins: <span id="coinAmount">1000</span></div>
   </header>
 
-  <div class="container">
-    <div id="casesTab" class="cases"></div>
-    <div id="inventoryTab" class="inventory"></div>
-    <div class="scrolling-animation" id="scrollContainer">
-      <div class="scrolling-track" id="scrollTrack"></div>
-    </div>
-  </div>
+  <main>
+    <section id="casesView"></section>
+    <section id="inventoryView" class="hidden"></section>
+  </main>
 
-  <script>
-    let userMoney = 1000;
-    let inventory = [];
-    const moneyDisplay = document.getElementById('moneyDisplay');
-    const casesTab = document.getElementById('casesTab');
-    const inventoryTab = document.getElementById('inventoryTab');
-    const scrollContainer = document.getElementById('scrollContainer');
-    const scrollTrack = document.getElementById('scrollTrack');
-
-    function updateMoney() {
-      moneyDisplay.textContent = '$' + userMoney.toFixed(2);
-    }
-
-    function showTab(tab) {
-      scrollContainer.style.display = 'none';
-      casesTab.style.display = tab === 'cases' ? 'flex' : 'none';
-      inventoryTab.style.display = tab === 'inventory' ? 'block' : 'none';
-      if (tab === 'inventory') renderInventory();
-    }
-
-    function renderCases(cases) {
-      casesTab.innerHTML = '';
-      cases.forEach(caseData => {
-        const div = document.createElement('div');
-        div.className = 'case';
-        div.innerHTML = '<img src="' + caseData.image + '" /><span>' + caseData.name + '</span>';
-        div.onclick = () => openCase(caseData);
-        casesTab.appendChild(div);
-      });
-    }
-
-    function openCase(caseData) {
-      if (userMoney < caseData.price) return alert("Not enough money!");
-      userMoney -= caseData.price;
-      updateMoney();
-      casesTab.style.display = 'none';
-      inventoryTab.style.display = 'none';
-      scrollContainer.style.display = 'block';
-      scrollTrack.innerHTML = '';
-      let items = caseData.items;
-      for (let i = 0; i < 20; i++) {
-        const item = items[Math.floor(Math.random() * items.length)];
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.dataset.name = item.name;
-        img.dataset.price = item.price;
-        scrollTrack.appendChild(img);
-      }
-      setTimeout(() => {
-        const selected = scrollTrack.children[10];
-        inventory.push({ name: selected.dataset.name, price: parseFloat(selected.dataset.price), image: selected.src });
-        showTab('inventory');
-      }, 4000);
-    }
-
-    function renderInventory() {
-      inventoryTab.innerHTML = '';
-      inventory.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'inventory-item';
-        div.innerHTML = '<div><img src="' + item.image + '"/><span>' + item.name + ' - $' + item.price + '</span></div><button class="sell-btn" onclick="sellItem(' + index + ')">SELL</button>';
-        inventoryTab.appendChild(div);
-      });
-    }
-
-    function sellItem(index) {
-      userMoney += inventory[index].price;
-      inventory.splice(index, 1);
-      updateMoney();
-      renderInventory();
-    }
-
-    fetch('cases.json')
-      .then(res => res.json())
-      .then(data => {
-        renderCases(data);
-        updateMoney();
-        showTab('cases');
-      });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
